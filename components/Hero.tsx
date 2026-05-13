@@ -3,7 +3,20 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
 
+const resumeHref = "/Suchit_Teli_NodeJS_Backend_Engineer.pdf";
+
 export default function Hero() {
+  const handleResumeClick = () => {
+    window.open(resumeHref, "_blank", "noopener,noreferrer");
+
+    const link = document.createElement("a");
+    link.href = resumeHref;
+    link.download = "Suchit_Teli_NodeJS_Backend_Engineer.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section
       id="top"
@@ -40,7 +53,7 @@ export default function Hero() {
             Building scalable apps · RAG/AI systems · Available June 1, 2026
           </p>
 
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
             <a
               href="#projects"
               className="inline-flex items-center justify-center gap-2 rounded-2xl bg-accent px-6 py-3.5 text-sm font-medium text-white transition hover:translate-y-[-1px] hover:bg-[#1648b6]"
@@ -48,16 +61,17 @@ export default function Hero() {
               View My Work
               <ArrowRight size={17} />
             </a>
-            <a
-              href="/Suchit_Teli_NodeJS_Backend_Engineer.pdf"
-              download
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-border bg-surface px-6 py-3.5 text-sm font-medium text-foreground transition hover:border-accent/40 hover:text-accent"
-            >
-              Download Resume
-              <Download size={17} />
-            </a>
+
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <button
+                type="button"
+                onClick={handleResumeClick}
+                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-border bg-surface px-6 py-3.5 text-sm font-medium text-foreground transition hover:translate-y-[-1px] hover:border-accent/40 hover:text-accent"
+              >
+                Download Resume
+                <Download size={17} />
+              </button>
+            </div>
           </div>
         </motion.div>
       </div>
